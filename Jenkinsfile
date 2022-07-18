@@ -15,14 +15,14 @@ pipeline {
         stage('--download source webfile--') {
             steps {
                 sh "sudo wget https://www.free-css.com/assets/files/free-css-templates/download/page280/spa-center.zip"
-                sh "sudo mv ./spa-center.zip /var/www/html/ && rm /var/www/html/index.html && sudo unzip /var/www/html/spa-center.zip"
+                sh "sudo mv ./spa-center.zip /var/www/html/ && sudo rm /var/www/html/index.html && sudo unzip /var/www/html/spa-center.zip"
                 sh "sudo mv /var/www/html/spa-html-template/* /var/www/html/"
                 sh "sudo rm -rf /var/www/html/spa-html-template /var/www/html/spa-center.zip"
             }
         }
         stage('--restart the apache2 server--') {
             steps {
-                sh "systemctl restart apache2"
+                sh "sudo systemctl restart apache2"
             }
         }
     }
